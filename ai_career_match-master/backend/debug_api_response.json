@@ -1,0 +1,70 @@
+{
+  "parsed": {
+    "name": "kenza belldddata and ia",
+    "title": "data scienstit",
+    "brief": "nnn",
+    "contact": {
+      "location_city": null,
+      "location_state": null,
+      "location_country": null,
+      "email": "kenza@gmail.com",
+      "phone": "0652656548",
+      "linkedin": null,
+      "github": null,
+      "twitter": null,
+      "website": null
+    },
+    "employment_history": [
+      {
+        "title": "data scienstit",
+        "company": "Wal-It Services",
+        "company_website": null,
+        "location": "bcbcb",
+        "start_date": null,
+        "end_date": null,
+        "roles": [],
+        "responsibilities": [
+          "cncnc",
+          "cncc"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": null,
+        "institution_name": "EMSI",
+        "institution_country": null,
+        "start_date": null,
+        "end_date": null
+      }
+    ],
+    "skills": [
+      "dd",
+      "d",
+      "djdjdj"
+    ],
+    "courses": [
+      "d",
+      "dd",
+      "d",
+      "d",
+      "ibm (coiur)mmm"
+    ],
+    "languages": [],
+    "references": [],
+    "derived": {
+      "years_of_experience": 0,
+      "approximate_age": 0
+    },
+    "driving_license_present": null,
+    "driving_license_id": null
+  },
+  "normalized_text": "KENZA BELLD\nData and IA\nkenza@gmail.com | 0652656548\n\nSUMMARY\nnnn\n\nEDUCATION\nEMSI\nGPA: dd,d,\nRelevant Coursework: d, dd, d, d\n\nWORK EXPERIENCE\nData Scientist, Wal-It Services\nbcbcb\ncncnc\ncncc\n\nPROJECTS\nCareerMatch\nkdkd\nldldl\n\nSKILLS\nTechnical Skills: • dd • d\nSoft Skills: • djdjdj\n\nCERTIFICATIONS AND TRAINING\nIBM (COUR) mmm\n\nACHIEVEMENTS\nndndndnddnd\n\nHOBBIES\nndndnd",
+  "file_metadata": null,
+  "meta": {
+    "message": "Resume parsed successfully.",
+    "file_hash": "0427c39f4175a3d007310c1e895fede2",
+    "balance": 416,
+    "runtime_ms": 104
+  }
+}

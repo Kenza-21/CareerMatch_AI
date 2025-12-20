@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Career Match AI Design System */
+
+@layer base {
+  :root {
+    /* Core backgrounds */
+    --background: 220 20% 97%;
+    --foreground: 220 30% 15%;
+
+    /* Card surfaces with glass effect */
+    --card: 0 0% 100%;
+    --card-foreground: 220 30% 15%;
+
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 30% 15%;
+
+    /* Primary - Coach Blue */
+    --primary: 199 97% 65%;
+    --primary-foreground: 220 30% 10%;
+
+    /* Secondary - User Purple */
+    --secondary: 239 84% 67%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted surfaces */
+    --muted: 220 14% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Accent - Gradient midpoint */
+    --accent: 180 100% 50%;
+    --accent-foreground: 220 30% 10%;
+
+    /* Semantic colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 145 63% 49%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 36 100% 50%;
+    --warning-foreground: 220 30% 10%;
+
+    /* Borders and inputs */
+    --border: 220 20% 88%;
+    --input: 220 20% 92%;
+    --ring: 199 97% 65%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-coach: linear-gradient(135deg, hsl(199, 97%, 65%) 0%, hsl(180, 100%, 50%) 100%);
+    --gradient-user: linear-gradient(135deg, hsl(239, 84%, 67%) 0%, hsl(270, 60%, 55%) 100%);
+    --gradient-neutral: linear-gradient(135deg, hsl(220, 20%, 97%) 0%, hsl(220, 20%, 85%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(220, 30%, 15%) 0%, hsl(239, 50%, 25%) 50%, hsl(199, 60%, 30%) 100%);
+    --gradient-card: linear-gradient(145deg, hsla(0, 0%, 100%, 0.9) 0%, hsla(0, 0%, 100%, 0.7) 100%);
+
+    /* Glass effect */
+    --glass-bg: hsla(0, 0%, 100%, 0.8);
+    --glass-border: hsla(0, 0%, 100%, 0.5);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px hsla(220, 30%, 15%, 0.06);
+    --shadow-md: 0 8px 24px hsla(220, 30%, 15%, 0.1);
+    --shadow-lg: 0 16px 48px hsla(220, 30%, 15%, 0.15);
+    --shadow-glow: 0 0 40px hsla(199, 97%, 65%, 0.3);
+
+    /* Sidebar */
+    --sidebar-background: 220 20% 97%;
+    --sidebar-foreground: 220 30% 15%;
+    --sidebar-primary: 199 97% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 92%;
+    --sidebar-accent-foreground: 220 30% 15%;
+    --sidebar-border: 220 20% 88%;
+    --sidebar-ring: 199 97% 65%;
+  }
+
+  .dark {
+    --background: 220 30% 8%;
+    --foreground: 220 15% 95%;
+
+    --card: 220 30% 12%;
+    --card-foreground: 220 15% 95%;
+
+    --popover: 220 30% 12%;
+    --popover-foreground: 220 15% 95%;
+
+    --primary: 199 97% 65%;
+    --primary-foreground: 220 30% 10%;
+
+    --secondary: 239 84% 67%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 180 100% 50%;
+    --accent-foreground: 220 30% 10%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 18%;
+    --input: 220 20% 18%;
+    --ring: 199 97% 65%;
+
+    --glass-bg: hsla(220, 30%, 12%, 0.8);
+    --glass-border: hsla(220, 30%, 20%, 0.5);
+
+    --sidebar-background: 220 30% 10%;
+    --sidebar-foreground: 220 15% 95%;
+    --sidebar-primary: 199 97% 65%;
+    --sidebar-primary-foreground: 220 30% 10%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 220 15% 95%;
+    --sidebar-border: 220 20% 18%;
+    --sidebar-ring: 199 97% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .gradient-coach {
+    background: var(--gradient-coach);
+  }
+
+  .gradient-user {
+    background: var(--gradient-user);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-gradient-coach {
+    background: var(--gradient-coach);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-user {
+    background: var(--gradient-user);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
