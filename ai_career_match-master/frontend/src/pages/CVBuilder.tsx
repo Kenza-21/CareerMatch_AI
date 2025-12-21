@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PageLayout from "@/components/layout/PageLayout";
@@ -159,11 +160,13 @@ export default function CVBuilder() {
     // Basic validation
     if (!personalInfo.fullName.trim()) {
       setError("Le nom complet est requis");
+      setCurrentStep(1);
       return;
     }
     
     if (!personalInfo.email.trim()) {
       setError("L'email est requis");
+      setCurrentStep(1);
       return;
     }
 
@@ -182,18 +185,33 @@ export default function CVBuilder() {
           linkedin: personalInfo.linkedin.trim(),
           summary: personalInfo.summary.trim(),
         },
-        experiences: experiences.filter(exp => exp.company.trim() || exp.position.trim()),
-        educations: educations.filter(edu => edu.institution.trim() || edu.degree.trim()),
+        experiences: experiences
+          .filter(exp => exp.company.trim() || exp.position.trim())
+          .map(exp => ({
+            ...exp,
+            startDate: exp.startDate || "",
+            endDate: exp.endDate || "",
+            description: exp.description.trim()
+          })),
+        educations: educations
+          .filter(edu => edu.institution.trim() || edu.degree.trim())
+          .map(edu => ({
+            ...edu,
+            year: edu.year || ""
+          })),
         skills: skills,
-        languages: languages.filter(lang => lang.language.trim()),
+        languages: languages
+          .filter(lang => lang.language.trim())
+          .map(lang => ({
+            language: lang.language.trim(),
+            level: lang.level.trim() || "Intermédiaire"
+          })),
         summary: personalInfo.summary.trim(),
         projects: [],
         certifications: [],
         achievements: [],
         hobbies: []
       };
-      
-      console.log("📤 Envoi des données CV au backend:", cvData);
       
       // Create FormData
       const formData = new FormData();
@@ -209,12 +227,10 @@ export default function CVBuilder() {
       formData.append('hobbies', JSON.stringify(cvData.hobbies));
       
       // Call the backend
-      const response = await fetch('http://localhost:8000/api/generate-cv', {
+      const response = await fetch('http://localhost:8000/resume/generate-cv', {
         method: 'POST',
         body: formData,
       });
-      
-      console.log("📥 Réponse API status:", response.status);
       
       if (!response.ok) {
         let errorText = `Erreur ${response.status}`;
@@ -244,11 +260,9 @@ export default function CVBuilder() {
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
       
-      console.log("✅ CV généré avec succès:", filename);
       setSuccess(`CV généré avec succès! Le fichier "${filename}" a été téléchargé.`);
       
     } catch (err: any) {
-      console.error("❌ Erreur de génération du CV:", err);
       if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
         setError("Impossible de se connecter au serveur. Vérifiez que le backend FastAPI est en cours d'exécution sur http://localhost:8000");
       } else {
@@ -272,6 +286,7 @@ export default function CVBuilder() {
                   onChange={(e) => setPersonalInfo({ ...personalInfo, fullName: e.target.value })}
                   placeholder="Ahmed Benjelloun"
                   className="bg-background"
+                  required
                 />
               </div>
               <div>
@@ -282,6 +297,7 @@ export default function CVBuilder() {
                   onChange={(e) => setPersonalInfo({ ...personalInfo, email: e.target.value })}
                   placeholder="ahmed@email.com"
                   className="bg-background"
+                  required
                 />
               </div>
             </div>
@@ -621,16 +637,22 @@ export default function CVBuilder() {
                   </div>
                   <div>
                     <Label>Niveau (optionnel)</Label>
-                    <Input
+                    <select
                       value={lang.level}
                       onChange={(e) => {
                         const updated = [...languages];
                         updated[index].level = e.target.value;
                         setLanguages(updated);
                       }}
-                      placeholder="Ex: Natif, Courant, B2..."
-                      className="bg-background"
-                    />
+                      className="w-full px-3 py-2 rounded-md border border-input bg-background text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    >
+                      <option value="">Sélectionner un niveau</option>
+                      <option value="Natif">Natif</option>
+                      <option value="Courant">Courant</option>
+                      <option value="Avancé">Avancé</option>
+                      <option value="Intermédiaire">Intermédiaire</option>
+                      <option value="Débutant">Débutant</option>
+                    </select>
                   </div>
                 </div>
               </motion.div>
@@ -711,7 +733,7 @@ export default function CVBuilder() {
               </Button>
               
               <p className="text-xs text-muted-foreground mt-4">
-                Assurez-vous que le backend FastAPI est en cours d'exécution sur http://localhost:8000
+                Format: DOCX (compatible avec Microsoft Word, LibreOffice, Google Docs)
               </p>
             </div>
 
@@ -776,7 +798,7 @@ export default function CVBuilder() {
                     <div className="flex flex-wrap gap-1 mt-1">
                       {languages.filter(l => l.language.trim()).map((lang, i) => (
                         <Badge key={i} variant="outline" className="text-xs">
-                          {lang.language} ({lang.level})
+                          {lang.language} ({lang.level || "Intermédiaire"})
                         </Badge>
                       ))}
                     </div>
@@ -923,16 +945,7 @@ export default function CVBuilder() {
           )}
         </div>
         
-        {/* Help Text */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-muted-foreground">
-            <strong>Note:</strong> Seuls le nom complet et l'email sont requis. 
-            Tous les autres champs sont optionnels.
-          </p>
-          <p className="text-xs text-muted-foreground mt-2">
-            Vérifiez que le backend FastAPI est en cours d'exécution sur http://localhost:8000
-          </p>
-        </div>
+       
       </div>
     </PageLayout>
   );

@@ -8,7 +8,7 @@ from routes.search_routes import router as search_router
 from routes.ats_routes import router as ats_router
 from routes.assistant_routes import router as assistant_router
 from routes.smart_assistant_routes import router as smart_assistant_router
-
+from routes.resume_routes import router as resume_router
 # Create FastAPI app
 app = FastAPI(
     title="Career-Match Backend API",
@@ -34,7 +34,7 @@ app.include_router(search_router)
 app.include_router(ats_router)
 app.include_router(assistant_router)  # Basic Assistant
 app.include_router(smart_assistant_router)  # Smart Assistant with LLM
-
+app.include_router(resume_router)
 @app.get("/")
 async def root():
     return {
