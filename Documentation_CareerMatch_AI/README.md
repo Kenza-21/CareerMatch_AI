@@ -79,7 +79,7 @@ React Frontend
 ## Required API Keys
 
 | Service         |        Usage                |
-|--------------- -|-----------------------------|
+|-----------------|-----------------------------|
 | API             | AI coach and ATS evaluation |
 | ResumeParser API| CV parsing                  |
 
